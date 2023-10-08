@@ -84,9 +84,6 @@ body{
     align-items: center;
   }
 
-  &__list{
-  }
-
   &__link{
     color: #212121;
     font-family: Roboto;
@@ -146,9 +143,6 @@ body{
     &__item{
       margin-right: 32px;
     }
-  }
-
-  .menu-main{
   }
 
   .menu-list-main{
@@ -249,7 +243,7 @@ body{
   }
 
   .header:target .menu-list-main{
-    left: -12.1%;
+    left: -12.5%;
   }
 }
 /*-------------------------------------------------------------*/
