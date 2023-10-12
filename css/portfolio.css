@@ -4,6 +4,8 @@
   padding: 0;
   border: 0;
   list-style-type: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *::after, *::before {
@@ -234,6 +236,10 @@ body {
             flex: 0 0 24px;
   }
 }
+.menu-container {
+  display: none;
+}
+
 @media (max-width: 767.98px) {
   .header__button {
     position: relative;
@@ -245,21 +251,7 @@ body {
         justify-content: space-around;
   }
   .menu-list-main {
-    position: fixed;
-    top: 0;
-    left: -150%;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: #fff;
-    -webkit-transition: left 0.5s ease 0s;
-    transition: left 0.5s ease 0s;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    gap: 32px 0;
-    padding: 60px 0 0 40px;
+    display: none;
   }
   .menu__link {
     font-size: 40px;
@@ -269,11 +261,67 @@ body {
   .menu-list-contacts {
     display: none;
   }
-  .menu-list-contacts__icon {
-    display: none;
+  .header:target .menu-container {
+    left: 0%;
   }
-  .header:target .menu-list-main {
-    left: -12.5%;
+  .menu-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 32px 0;
+    padding: 60px 0 0 40px;
+  }
+  .menu-container a:active {
+    color: #188CE8;
+  }
+  .nav-item {
+    margin-bottom: 35px;
+  }
+  .nav-item__item {
+    font-size: 40px;
+    color: #212121;
+    letter-spacing: 0.8px;
+  }
+  .number-info {
+    margin-top: auto;
+    margin-bottom: 64px;
+  }
+  .list-number-mail {
+    color: #757575;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+  }
+  .nav-social {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 64px;
+    margin-bottom: 64px;
+  }
+  .nav-social__item {
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 1px solid #212121;
+    font-size: 18px;
+  }
+  .nav-social__item:first-child {
+    padding-left: 0;
+  }
+  .nav-social__item:last-child {
+    border: none;
   }
 }
 /*-------------------------------------------------------------*/

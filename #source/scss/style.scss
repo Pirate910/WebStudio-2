@@ -1,19 +1,7 @@
-*{
-  margin: 0;
-  padding: 0;
-  border: 0;
-  list-style-type: none;
-  box-sizing: border-box;
-}
-
-*::after,*::before{
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-}
+@import "./nonstyle.scss";
+@import "./colours.scss";
+@import "./size.scss";
+@import "./adaptive.scss";
 
 a{
   color: black;
@@ -23,7 +11,7 @@ a{
 body{
   font-family: Roboto;
   min-width: 100%;
-  color: #757575;
+  color: $second-color;
   font-size: 14px;
 }
 
@@ -39,9 +27,9 @@ body{
   margin: 0 auto;
 }
 
-@media (max-width:1200px){
+@media (max-width: $desctop-tablet){
   .container{
-    max-width: 1057px;
+    max-width: $desctop-tablet-container;
    }
 }
 
@@ -87,7 +75,7 @@ body{
 
 
   &__link{
-    color: #212121;
+    color: $main-color;
     font-family: Roboto;
     font-size: 14px;
     letter-spacing: 0.28px;
@@ -105,9 +93,9 @@ body{
   }
 }
 
-@media (max-width: 767.98px){
+@media (max-width: $mobile){
   .container{
-    max-width: 750px;
+    max-width: $mobile-tablet-container;
   }
 }
 
@@ -136,143 +124,20 @@ body{
 }
 /*--------------------------------------------------------------------------*/
 
-@media (max-width: 1200px){
-  .menu{
-    &__body{
-      display: flex;
-      align-items: center;
-    }
-    &__item{
-      margin-right: 32px;
-    }
-  }
-
-  .menu-list-main{
-    margin-left: 93px;
-  }
-
-  .menu-list-contacts{
-    flex-direction: column;
-    &:last-child{
-      gap: 10px; 
-    }
-  }
+@media (max-width: $desctop-tablet){
+  @extend %header-adaptive;
 }
 
-@media (max-width:767.98px){
-.close-icon-menu,
-.icon-menu{
-  display: flex;
-  position: relative;
-  z-index: 6;
-  flex: 0 0 24px;
-  height: 18px;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
-.icon-menu::after,
-.icon-menu::before{
-  content: "";
-  background-color: #212121;
-  height: 2px;
-}
-
-.icon-menu span{
-  background-color: #212121;
-  height: 2px;
-}
-
-.header:target .icon-menu{
-  display: none;
-}
-
-.header:target .close-icon-menu{
-  display: flex;
-}
-
-.close-icon-menu{
-  display: none; 
-  margin-bottom: 5px;
-}
-
-.close-icon-menu::before{
-  content: "";
-  background: url(/image/header/icons8-удалить-24.png) no-repeat;
-  flex: 0 0 24px;
-}
-
+@media (max-width :$mobile){
+  @extend %header-icon;
 }
 
 .menu-container{
   display: none;
 }
 
-@media (max-width:767.98px){
-  .header__button{
-    position: relative;
-    z-index: 6;
-  }
-
-  .header{
-    &__container{
-      padding: 20px 0;
-      justify-content: space-around;
-    }
-  }
-
-  .menu-list-main{
-      display: none;
-  }
-
-  .menu__link{
-    font-size: 40px;
-    color: #212121;
-    letter-spacing: .8px;
-  }
-
-  .menu-list-contacts{
-    display: none;
-  }
-
-  .header:target .menu-container{
-    left: 0%;
-  }
-
-  .menu-container{
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: -150%;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: #fff;
-    transition: left .5s ease .0s;
-    flex-direction: column;
-    gap: 32px 0;
-    padding: 60px 0 0 40px;
-  }
-
-  .nav-item{
-    margin-bottom: 35px;
-    &__item{
-      font-size: 40px;
-      color: #212121;
-      letter-spacing: .8px;
-    }
-  }
-
-  .number-info{
-    margin-top: auto;
-  }
-
-  .list-number-mail{
-    color: #757575;
-    font-size: 24px;
-    letter-spacing: .5px;
-  }
-
+@media (max-width: $mobile){
+ @extend %header-menu;
 }
 
 /*======================================================*/
@@ -325,7 +190,7 @@ body{
     margin-top: 14px;
     width: 30px;
     height: 30px;
-    border: 1px solid black;
+    border: 1px solid $main-color;
     padding: 6px;
     border-radius: 50%;
     &:hover >path {
@@ -337,7 +202,7 @@ body{
     font-size: 20px;
     font-weight: 700;
     text-align: center;
-    color: #212121;
+    color: $main-color;
     margin-bottom: 12px;
     margin-top: 10px;
   }
@@ -426,7 +291,7 @@ body{
 .service{
    position: relative;
    width: 100%;
-   background: url(/image/background.png), lightgray 0px  -147.517px / 100% 170.667% no-repeat;
+   background: url(../image/background.png), lightgray 0px  -147.517px / 100% 170.667% no-repeat;
    color: #fff;
   &__image::before{
     content: '';
@@ -483,15 +348,8 @@ body{
   }
 }
 
-@media (max-width:1200px){
-  .service{
-    &__container{
-      padding: 130px 0 198px 0;
-    }
-    &__button{
-      padding: 15px 24px;
-    }
-  }
+@media (max-width: $desctop-tablet){
+  @extend %menu-service;
 }
 
 /*======================================================*/
@@ -499,7 +357,7 @@ body{
 
 .applications{
   &__container{
-    padding: 94px 0;
+    padding: $objects-container;
     background-color: #FFF;
   }
 }
@@ -542,35 +400,11 @@ body{
 }
 
 
-@media (max-width:1200px){
-  .applications{
-    &__container{
-      padding: 60px 15px;
-    }    
-  }
-
-  .functions-applications__body{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  .body-functions-applications{
-    &__item{
-      display: flex;
-      flex-direction: column;
-      gap: 30px 0;
-      flex: 0 1 354px;
-    }
-  
-    &__icon{
-      padding: 25px 142px;
-      border-radius: 4px;
-      background: #F5F4FA;
-    }
-  }
+@media (max-width: $desctop-tablet){
+  @extend %menu-applications;
 }
 
-@media (max-width:767.98px){
+@media (max-width: $mobile){
   .body-functions-applications{
     &__item{
       display: flex;
@@ -644,7 +478,7 @@ body{
   }
 }
 
-@media (max-width:1200px){
+@media (max-width: $desctop-tablet){
   .block-image{
     display: flex;
     gap: 30px;
@@ -653,7 +487,7 @@ body{
   }
 }
 
-@media (max-width:767.98px){
+@media (max-width: $mobile){
   .operations{
     display: none;
   }
@@ -664,7 +498,7 @@ body{
 
 .crew{
   &__container{
-    padding: 94px 0;
+    padding: $objects-container;
     background-color: #F5F4FA;
   }
   &__title{
@@ -741,11 +575,11 @@ body{
 
 .client{
   &__container{
-    padding: 94px 0;
+    padding: $objects-container;
   }
 
   &__title{
-    color: #212121;
+    color: $main-color;
     text-align: center;
     margin-bottom: 50px;
     font-size: 36px;
@@ -785,53 +619,12 @@ body{
   fill: #2196F3;
 }
 
-@media (max-width:1200px){
-  .crew{
-    &__container{
-      padding: 60px 0;
-    }
-  }
-
-  .block-card{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-
-    &__item{
-      height: 536px;
-    }
-
-    &__image{
-      width: 354px;
-      height: 374px;
-    }
-
-  }
-
+@media (max-width: $desctop-tablet){
+  @extend %menu-crew;
 }
 
-@media (max-width:1200px){
-  .client-base{
-     &__link-icon{
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       width: 106px;
-       height: 60px;
-     }
-     &__items{
-       gap: 30px;
-       flex-wrap: wrap;
-       justify-content: center;
-       display: flex;
-     }
-  
-     &__link{
-       width: 226px;
-       height: 92px;
-     }
-   }
+@media (max-width: $desctop-tablet){
+  @extend %menu-client-base;
 }
 
 /*================================================================*/
@@ -953,7 +746,7 @@ body{
   }
 }
 
-@media (max-width:1200px){
+@media (max-width: $desctop-tablet){
   .footer{
     &__container{
       padding: 60px 0px;
