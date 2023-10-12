@@ -3,6 +3,7 @@
   padding: 0;
   border: 0;
   list-style-type: none;
+  box-sizing: border-box;
 }
 
 *::after,*::before{
@@ -34,41 +35,39 @@ body{
 }
 .container{
   max-width: 1200px;
-  padding: 0 25px;
+  padding: 0 15px;
   margin: 0 auto;
 }
 
-@media (max-width:991.78px){
-  html,
-  body {
-   height: 100%;
-}
-  
+@media (max-width:1200px){
   .container{
-    padding: 0 15px;
-    max-width: 991px;
-  }
+    max-width: 1057px;
+   }
 }
 
 /*======================================================*/
 
 .header{
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: #FFF;
   &__container{
     display: flex;
-    min-height: 80px;
+    padding: 26px 0;
     align-items: center;
+    border-bottom: 1px solid blue;
   }
 
   &__logo{
     font-family: Raleway;
     font-size: 26px;
     font-weight: 700;
-    line-height: normal;
+    line-height: 1.19;
     letter-spacing: 0.78px;
     >span{color: #2196F3;}
-  }
-  &__menu{
-    flex: 1 1 auto;
   }
 }
 
@@ -81,39 +80,28 @@ body{
 }
 
 .menu{
-  display: flex;
-  justify-content: space-around;
   &__body{
-    padding-left: 93px;  
     display: flex;
-    gap: 0 315px;
     align-items: center;
   }
 
-  &__list{
-    display: flex;
-  }
 
   &__link{
     color: #212121;
     font-family: Roboto;
     font-size: 14px;
     letter-spacing: 0.28px;
+    transition: .3s;
     &:hover{
       color: #2196F3;
-      border-bottom: 5px solid #2196F3;
-      padding-bottom: 28px;
-      border-radius: 5px;
-    }
-    &:active{
-      border-bottom: 5px solid #2196F3;
-      padding-bottom: 28px;
-      border-radius: 5px;
     }
   }
 
   &__item{
-    margin: 0 50px 0 0;
+    margin-right: 50px;
+    &:last-child{
+      margin: 0;
+    }
   }
 }
 
@@ -126,39 +114,47 @@ body{
 .link__phone_color{
   color: #757575;
   &:hover{
-    color: #373738;
+    color: #188CE8;
   }
 }
-
-.menu-list2{
+/*--------------------------------------------------------------------*/
+.menu-list-main{
   display: flex;
-  z-index: 6;
-  flex: 1 0 auto;
+  margin-left: 93px;
 }
+/*--------------------------------------------------------------------*/
+.menu-list-contacts{
+  display: flex;
+  margin-left: auto;
+  flex: 0 0 auto;
+  >li{
+    >a{
+      display: flex;
+      gap: 0 10px;
+    }
+  }
+}
+/*--------------------------------------------------------------------------*/
 
-
-@media (max-width: 991.78px){
+@media (max-width: 1200px){
   .menu{
     &__body{
       display: flex;
-      gap: 0 93px; 
+      align-items: center;
     }
     &__item{
-      margin-right: 50px;
+      margin-right: 32px;
     }
   }
-  
-  .menu-list1{
-    padding-left: 88px;
-    gap: 0 20px;
+
+  .menu-list-main{
+    margin-left: 93px;
   }
 
-  .menu-list2{
-    display: flex;
-    flex: 0 1 auto;
-    flex-wrap: wrap;
+  .menu-list-contacts{
+    flex-direction: column;
     &:last-child{
-      gap: 10px 0;
+      gap: 10px; 
     }
   }
 }
@@ -173,7 +169,6 @@ body{
   height: 18px;
   justify-content: space-between;
   flex-direction: column;
-  left: 250px;
 }
 
 .icon-menu::after,
@@ -209,59 +204,75 @@ body{
 
 }
 
+.menu-container{
+  display: none;
+}
+
 @media (max-width:767.98px){
-  .header__logo{
-    position: relative;
-    z-index: 10;
-  }
   .header__button{
     position: relative;
     z-index: 6;
   }
 
-  .menu{
-    &__body{
-      display: flex;
-      position: fixed;
-      z-index: 6;
-      top: 0;
-      left: 100%;
-      overflow: auto;
-      width: 100%;
-      height: 100%;
-      background-color: #fff;
-      transition: left .5s ease .0s;
+  .header{
+    &__container{
+      padding: 20px 0;
+      justify-content: space-around;
     }
+  }
 
-    &__body{
-      flex-direction: column;
-      gap: 300px 0;
-      align-items: flex-start;
-      padding: 90px 25px;
-    }
+  .menu-list-main{
+      display: none;
+  }
 
-    &__list{
-      flex-direction: column;
-    }
+  .menu__link{
+    font-size: 40px;
+    color: #212121;
+    letter-spacing: .8px;
+  }
 
+  .menu-list-contacts{
+    display: none;
+  }
+
+  .header:target .menu-container{
+    left: 0%;
+  }
+
+  .menu-container{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    transition: left .5s ease .0s;
+    flex-direction: column;
+    gap: 32px 0;
+    padding: 60px 0 0 40px;
+  }
+
+  .nav-item{
+    margin-bottom: 35px;
     &__item{
-      padding: 30px 0 0 0;
-    }
-
-    &__link{
       font-size: 40px;
-      letter-spacing: 1px;
-      color: #000;
+      color: #212121;
+      letter-spacing: .8px;
     }
   }
 
-  .menu-list1{
-    padding-left: 0;
+  .number-info{
+    margin-top: auto;
   }
 
-  .header:target .menu__body{
-    left: 0;
+  .list-number-mail{
+    color: #757575;
+    font-size: 24px;
+    letter-spacing: .5px;
   }
+
 }
 
 /*======================================================*/
@@ -293,7 +304,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 10px;
+    padding: 30px 0px;
   }
 
   &__content{
@@ -311,10 +322,15 @@ body{
   }
 
   &__close-button_link{
-    border: 1px solid black;
-    border-radius: 50%;
     margin-top: 14px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
     padding: 6px;
+    border-radius: 50%;
+    &:hover >path {
+      fill: #188CE8;
+    }
   }
 
   &__title{
@@ -327,7 +343,8 @@ body{
   }
 
 }
-/*----------------------------------------------------------*/
+
+
 .register{
   display: flex;
   flex-direction: column;
@@ -425,9 +442,12 @@ body{
   }
 
   &__container{
+    padding: 200px 0 200px 0;
+  }
+
+  &__block-text{
     display: flex;
     flex-direction: column;
-    padding: 200px 0 200px 0;
     align-items: center;
   }
 
@@ -463,10 +483,13 @@ body{
   }
 }
 
-@media (max-width:991.78px){
+@media (max-width:1200px){
   .service{
+    &__container{
+      padding: 130px 0 198px 0;
+    }
     &__button{
-      padding: 10px 24px;
+      padding: 15px 24px;
     }
   }
 }
@@ -476,7 +499,7 @@ body{
 
 .applications{
   &__container{
-    padding: 94px 15px;
+    padding: 94px 0;
     background-color: #FFF;
   }
 }
@@ -487,6 +510,7 @@ body{
   justify-content: center;
   font-size: 14px;
 }
+
 .body-functions-applications{
   &__item{
     display: flex;
@@ -517,7 +541,8 @@ body{
   }
 }
 
-@media (max-width:991.78px){
+
+@media (max-width:1200px){
   .applications{
     &__container{
       padding: 60px 15px;
@@ -545,11 +570,38 @@ body{
   }
 }
 
+@media (max-width:767.98px){
+  .body-functions-applications{
+    &__item{
+      display: flex;
+      flex-direction: column;
+      gap: 30px 0;
+      flex: 0 1 450px;
+    }
+
+    .body-functions-applications__title{
+      text-align: center;
+    }
+
+    .body-functions-applications__text{
+      letter-spacing: .5px;
+    }
+  
+    &__icon{
+      padding: 25px 190px;
+      border-radius: 4px;
+      background: #F5F4FA;
+    }
+  }
+}
+
 
 /*======================================================*/
 
 .operations{
-  padding-bottom: 94px;
+  &__container{
+    padding: 0 0 94px 0;
+  }
   &__title{
     text-align: center;
     margin-bottom: 50px;
@@ -563,20 +615,9 @@ body{
   }
 }
 
-@media (max-width:991.78px){
-  .block-image{
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0 15px;
-  }
-}
-
 .block-image{
   display: flex;
   gap: 0 30px;
-  padding: 0 15px;
   >img{
     display: block;
     width: 100%;
@@ -603,12 +644,29 @@ body{
   }
 }
 
+@media (max-width:1200px){
+  .block-image{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width:767.98px){
+  .operations{
+    display: none;
+  }
+}
+
 /*================================================================*/
 /*================================================================*/
 
 .crew{
-  padding: 94px 0;
-  background-color: #F5F4FA;
+  &__container{
+    padding: 94px 0;
+    background-color: #F5F4FA;
+  }
   &__title{
     color: #212121;
     font-size: 36px;
@@ -652,29 +710,6 @@ body{
   }
 }
 
-@media (max-width:991.78px){
-  .crew{
-    padding: 60px 0;
-  }
-
-  .block-card{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-
-    &__item{
-      height: 536px;
-    }
-
-    &__image{
-      width: 354px;
-      height: 374px;
-    }
-
-  }
-
-}
 
 .block-icons{
   display: flex;
@@ -732,10 +767,6 @@ body{
     display: flex;
   }
 
-  &__icon{
-    padding: 16px 32px;
-  }
-
   &__link{
     display: flex;
     justify-content: center;
@@ -750,36 +781,59 @@ body{
   }
 }
 
-@media (max-width:991.78px){
-.client-base{
-   &__link-icon{
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: 106px;
-     height: 60px;
-   }
-   &__items{
-     gap: 30px;
-     flex-wrap: wrap;
-     justify-content: center;
-     display: flex;
-   }
-
-   &__icon{
-     padding: 16px 32px;
-   }
-
-   &__link{
-     width: 226px;
-     height: 92px;
-   }
- }
-}
-
 .client-base__link:hover svg path{
   fill: #2196F3;
 }
+
+@media (max-width:1200px){
+  .crew{
+    &__container{
+      padding: 60px 0;
+    }
+  }
+
+  .block-card{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+
+    &__item{
+      height: 536px;
+    }
+
+    &__image{
+      width: 354px;
+      height: 374px;
+    }
+
+  }
+
+}
+
+@media (max-width:1200px){
+  .client-base{
+     &__link-icon{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       width: 106px;
+       height: 60px;
+     }
+     &__items{
+       gap: 30px;
+       flex-wrap: wrap;
+       justify-content: center;
+       display: flex;
+     }
+  
+     &__link{
+       width: 226px;
+       height: 92px;
+     }
+   }
+}
+
 /*================================================================*/
 /*================================================================*/
 .footer{
@@ -899,7 +953,7 @@ body{
   }
 }
 
-@media (max-width:991.78px){
+@media (max-width:1200px){
   .footer{
     &__container{
       padding: 60px 0px;
@@ -947,7 +1001,6 @@ body{
       gap: 20px 0;
     }
   }
-
 }
 
 .block-text__text{
@@ -960,3 +1013,5 @@ body{
 .text-extracolor{
   color: rgba(255, 255, 255, 0.60);
 }
+
+/**/
